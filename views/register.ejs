@@ -1,22 +1,38 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Register</title>
-    <link rel="stylesheet"  type="text/css" href="/main.css" />
-  </head>
-  <body>
-    <h1>Register Form</h1>
-    <form method="POST" action="registered">
-      <label for="email">Email:</label>
-        <input type="text" name="email" id="email" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/register.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">MovieDB</a>
+            <ul class="nav-links">
+                <li><a href="../about">About</a></li>
+                <li><a href="../users/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required>
-        
-        <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required>
-        
-            <input type="submit" value="Register" />
+    <div class="register-container">
+      <h1>Register</h1>
+      <form method="POST" action="/users/registered" class="register-form">
+          <label for="email">Email:</label>
+          <input id="email" name="email" type="text" required>
+  
+          <label for="username">Username:</label>
+          <input id="username" name="username" type="text" required>
+          
+          <label for="password">Password:</label>
+          <input id="password" name="password" type="password" required>
+          
+          <input type="submit" value="Register">
       </form>
-  </body>
+  </div>
+  
+</body>
 </html>

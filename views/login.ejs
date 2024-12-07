@@ -1,19 +1,35 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet"  type="text/css" href="/main.css" />
-  </head>
-  <body>
-    <h1>Login</h1>
-    <form method="POST" action="logged">
+    <link rel="stylesheet" href="/public/login.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">MovieDB</a>
+            <ul class="nav-links">
+                <li><a href="../about">About</a></li>
+                <li><a href="../users/register">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="register-container">
+      <h1>Login</h1>
+      <form method="POST" action="/users/logged" class="register-form">
         <label for="username">Username:</label>
-        <input id="username" name="username" type="text" required>
-         
-        <label for="password">Password:</label>
-        <input id="password" name="password" type="password" required>
-        
-        <input type="submit" value="Register" />
+          <input id="username" name="username" type="text" required>
+          
+          <label for="password">Password:</label>
+          <input id="password" name="password" type="password" required>
+          
+          <input type="submit" value="Register">
       </form>
-  </body>
+  </div>
+  
+</body>
 </html>
