@@ -2,8 +2,6 @@
 const express = require('express');
 const ejs = require('ejs');
 
-//Hello world
-
 //Express Sanitizer module
 const expressSanitizer = require('express-sanitizer');
 
@@ -61,10 +59,11 @@ global.db = db
 const mainRoute = require("./routes/users");
 app.use('/users', mainRoute);
 
-
-const usersRoutes = require('./routes/mainP');
+const usersRoutes = require('./routes/mainPage');
 app.use('/', usersRoutes);
 
+const usersRoutes = require('./routes/mainSaves');
+app.use('/saves', usersRoutes);
 
 //Server listening at port
 app.listen(port, 

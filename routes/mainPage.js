@@ -19,7 +19,7 @@ const redirectLogin = (req, res, next) => {
 }
 
 
-router.get('/', redirectLogin, function (req, res) {
+router.get('/home', redirectLogin, function (req, res) {
     res.send("Hello world test")                                                              
 });
 

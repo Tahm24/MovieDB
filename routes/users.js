@@ -9,15 +9,6 @@ const saltrounds = 10;
 //Validator
 const { check, validationResult } = require('express-validator');
 
-//Handle session redirect
-const redirectLogin = (req, res, next) => {
-    if (!req.session.userId) {
-      res.redirect('./login')
-    } else { 
-        next();
-    } 
-}
-
 
 //////////////Handle registration//////////////
 //Register page
@@ -78,7 +69,6 @@ router.post('/registered',
 });
 
 //////////////Handle Login//////////////
-
 //Login Page
 router.get('/login', (req, res, next) => {
     res.render('login.ejs');                                                             
@@ -110,7 +100,8 @@ router.post('/logged', (req, res) => {
                 }
                 if (matching) {
                   req.session.userId = req.body.username;
-                  console.log("db comparison working")
+                  res.redirect('../home');
+                  console.log("db comparison working");
                 }
                 else {
                   res.send("Password Incorrect")
