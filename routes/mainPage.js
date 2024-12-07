@@ -27,7 +27,7 @@ const redirectLogin = (req, res, next) => {
 
 ///////////////////////Home Page///////////////////////
 //Home Page loading recent movies
-router.get("/", (req, res) => {
+router.get("/", redirectLogin, (req, res) => {
     //page number using queries and parse into url to load page numbers, default value set to 1 page
     const page = req.query.page || 1; 
     const url = `${TMDB_BASE_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`;
@@ -92,7 +92,7 @@ router.post("/search", (req, res) => {
 });
 
 
-///////////////////////Home Page///////////////////////
+///////////////////////About Page///////////////////////
 router.get('/about', function (req, res) {
     res.send("About Page Test 1")                                                              
 });

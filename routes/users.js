@@ -9,6 +9,15 @@ const saltrounds = 10;
 //Express validator mdules
 const { check, validationResult } = require("express-validator");
 
+//Handle session redirect
+const redirectLogin = (req, res, next) => {
+    if (!req.session.userId ) {
+      res.redirect('/users/login')
+    } else { 
+        next();
+    } 
+}
+
 ////////////// Handle registration //////////////
 //Register page
 router.get("/register", function (req, res, next) {
@@ -127,14 +136,24 @@ router.post("/logged", (req, res) => {
                 }
                 if (matching) {
                     req.session.userId = req.body.username;
-                    res.redirect("../");
+                    res.redirect("/");
                     console.log("Login successful");
                 } else {
-                    res.send("Username or Password Incorrect");
+                    res.send('Username or Password Incorrect <a href='+'/users/login'+'>Login</a>');
                 }
             });
         }
     });
 });
+
+//Kill session activity 
+router.get('/logout', redirectLogin, (req,res) => {
+    req.session.destroy(err => {
+    if (err) {
+      return res.redirect('/users/login')
+    }
+    res.send('You are now Logged Out <a href='+'/users/login'+'>Login</a>');
+    })
+})
 
 module.exports = router;
