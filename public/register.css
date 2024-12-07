@@ -5,7 +5,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
-    background-image: url('/public/images/Mbg.jpg'); 
+    background-image: url('/images/Mbg.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
