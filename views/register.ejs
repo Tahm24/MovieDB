@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="/public/register.css">
 </head>
 <body>
+    <!-- Add the image directly to the HTML -->
+    <div class="background-image">
+        <img src="/public/images/Mbg.jpeg" alt="Background" class="bg-image">
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
@@ -18,21 +23,21 @@
         </div>
     </nav>
 
+    <!-- Register Form -->
     <div class="register-container">
-      <h1>Register</h1>
-      <form method="POST" action="/users/registered" class="register-form">
-          <label for="email">Email:</label>
-          <input id="email" name="email" type="text" required>
-  
-          <label for="username">Username:</label>
-          <input id="username" name="username" type="text" required>
-          
-          <label for="password">Password:</label>
-          <input id="password" name="password" type="password" required>
-          
-          <input type="submit" value="Register">
-      </form>
-  </div>
-  
+        <h1>Register</h1>
+        <form class="register-form" action="/users/register" method="POST">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
 </body>
 </html>
