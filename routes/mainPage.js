@@ -18,7 +18,7 @@ const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 //Handle session redirect
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId ) {
-      res.redirect('https://www.doc.gold.ac.uk/usr/306/users/login')
+      res.redirect('./login')
     } else { 
         next();
     } 
