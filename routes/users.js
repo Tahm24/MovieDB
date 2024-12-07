@@ -136,7 +136,7 @@ router.post("/logged", (req, res) => {
                 }
                 if (matching) {
                     req.session.userId = req.body.username;
-                    res.redirect("/");
+                    res.redirect("../");
                     console.log("Login successful");
                 } else {
                     res.send('Username or Password Incorrect <a href='+'/users/login'+'>Login</a>');
