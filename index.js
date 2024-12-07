@@ -2,38 +2,46 @@
 const express = require('express');
 const ejs = require('ejs');
 
+//Require Env
+require('dotenv').config();
+
+
 //Express Sanitizer module
 const expressSanitizer = require('express-sanitizer');
 
 //mysql module
 const mysql = require('mysql2');
 
-//Express session module
+//Express session module and Crypto Module
 const session = require('express-session');
+const crypto = require('crypto');
 
-//Express app intitialise and port number
+//Express app intitialise and port env number
 const app = express();
-const port = 90;
+const PORT = process.env.PORT;
 
+//Generate random String for secret using Crypto function
+const sessionSecret = crypto.randomBytes(64).toString('hex'); //128-character random string
 //Intialise sessions
 app.use(session({
-    secret: 'youre_welcomehere',
+    secret: sessionSecret, 
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 600000
+        maxAge: 20 * 60 * 1000 //20 minutes in milliseconds
     }
 }));
+console.log(sessionSecret);
 
 // Tell Express that we want to use EJS as the templating engine
 app.set('view engine', 'ejs')
+//Server some static files like css
+app.use('/public', express.static('public'));
 
 //Body-Parser and sanitize starter
 app.use(express.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 
-// Set up public folder (for css and statis js)
-app.use(express.static(__dirname + '/public'))
 
 //Database Connection
 const db = mysql.createConnection ({
@@ -62,10 +70,11 @@ app.use('/users', mainRoute);
 const usersRoutes = require('./routes/mainPage');
 app.use('/', usersRoutes);
 
-const usersRoutes = require('./routes/mainSaves');
-app.use('/saves', usersRoutes);
+// const usersRoutes = require('./routes/mainSaves');
+// app.use('/saves', usersRoutes);
 
 //Server listening at port
-app.listen(port, 
-    () => console.log(`Node app listening on port ${port}`)
+app.listen(PORT, () => {
+    console.log(`Node server is running on PORT: ${PORT}`)
+}
 )

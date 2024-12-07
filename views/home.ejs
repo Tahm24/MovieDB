@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="/public/home.css">
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+     <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">MovieDB</a>
+            <ul class="nav-links">
+                <li><a href="../">Home</a></li>
+                <li><a href="../about">About</a></li>
+                <li><a href="../favourites">Favourites</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Recent Movies</h1>
+
+        
+        <div class="search-container">
+            <form action="/search" method="post">
+                <input type="text" name="searchQuery" value="<%= searchQuery || '' %>" placeholder="Search for a movie..." >
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Error Message --><% if (error) { %>
+            <p class="error-message"><%= error %></p>
+        <% } %>
+
+        
+        <% if (movies && movies.length > 0) { %>
+            <div class="movies-container">
+                <% movies.forEach(movie => { %>
+                    <div class="movie-card">
+                        <img src="<%= movie.poster %>" alt="<%= movie.title %>">
+                        <h3><%= movie.title %></h3>
+                        <p>Release Date: <%= movie.releaseDate %></p>
+                    </div>
+                <% }) %>
+            </div>
+
+            
+           <% if (!searchQuery) { %>
+            <div class="pages">
+                <% if (page > 1) { %>
+                    <a href="/?page=<%= page - 1 %>">Previous</a>
+                <% } %>
+
+                <span>Page <%= page %> of <%= totalPages %></span>
+
+                <% if (page < totalPages) { %>
+                    <a href="/?page=<%= page + 1 %>">Next</a>
+                <% } %>
+            </div>
+        <% } %>
+    <% } else { %>
+        <p>No movies found.</p>
+    <% } %>
+</div>
+</body>
+</html>
