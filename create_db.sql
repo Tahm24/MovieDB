@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS details (
     id INT AUTO_INCREMENT,
     email VARCHAR(50),
     username VARCHAR(30),
-    hashedpassword VARCHAR(50),
+    hashedpassword VARCHAR(255),
     PRIMARY KEY(id)
 );
 
