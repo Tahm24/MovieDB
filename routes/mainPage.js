@@ -18,7 +18,7 @@ const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 //Handle session redirect
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId ) {
-      res.redirect('./login')
+      res.redirect('/users/login')
     } else { 
         next();
     } 
@@ -27,7 +27,7 @@ const redirectLogin = (req, res, next) => {
 
 ///////////////////////Home Page///////////////////////
 //Home Page loading recent movies
-router.get("/home", redirectLogin, (req, res) => {
+router.get("/", (req, res) => {
     //page number using queries and parse into url to load page numbers, default value set to 1 page
     const page = req.query.page || 1; 
     const url = `${TMDB_BASE_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`;
