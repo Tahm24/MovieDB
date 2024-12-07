@@ -68,7 +68,7 @@ const mainRoute = require("./routes/users");
 app.use('/users', mainRoute);
 
 const usersRoutes = require('./routes/mainPage');
-app.use('https://www.doc.gold.ac.uk/usr/306/', usersRoutes);
+app.use('/', usersRoutes);
 
 // const usersRoutes = require('./routes/mainSaves');
 // app.use('/saves', usersRoutes);
