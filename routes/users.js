@@ -115,7 +115,7 @@ router.post("/logged", (req, res) => {
             }
 
             if (match) {
-                req.session.userId = user.id; // Ensure userId is saved as an integer.
+                req.session.userId = user.id; //saving userid as int to match db scheme requirements
                 res.redirect("../");
             } else {
                 res.status(401).send('Invalid username or password <a href="./login">Try Again</a>.');
@@ -124,7 +124,7 @@ router.post("/logged", (req, res) => {
     });
 });
 
-// Kill session activity
+//kill session activity
 router.get("/logout", redirectLogin, (req, res) => {
     req.session.destroy((err) => {
         if (err) {
