@@ -63,7 +63,7 @@ router.post("/favourites/update/:id", redirectLogin, (req, res) => {
             console.error("Error updating note and rating:", err);
             return res.status(500).send("Error updating note and rating.");
         }
-        res.redirect("/favourites");
+        res.redirect("../favourites");
     });
 });
 
@@ -78,7 +78,7 @@ router.post("/favourites/delete/:id", redirectLogin, (req, res) => {
             console.error("Error deleting movie:", err);
             return res.status(500).send("Error deleting movie.");
         }
-        res.redirect("/favourites");
+        res.redirect("../favourites");
     });
 });
 
