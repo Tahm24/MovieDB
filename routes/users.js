@@ -79,7 +79,7 @@ router.post(
                         console.error("Error inserting into database:", err);
                         return res.status(500).send("Server Error");
                     }
-                    res.send(`Registration successful for ${username}`);
+                    res.send(`Registration successful. Please <a href="/users/login">Login</a>`);
                 });
             });
         });
