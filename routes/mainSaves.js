@@ -51,6 +51,32 @@ router.post("/favourites/saves", redirectLogin, (req, res) => {
     });
 });
 
+//search
+router.post("/favourites/search", redirectLogin, (req, res) => {
+    const userId = req.session.userId;
+    const searchQuery = req.body.searchQuery;
+
+    const sql = `
+        SELECT * 
+        FROM saved_movies 
+        WHERE user_id = ? AND (title LIKE ? OR note LIKE ?)
+        ORDER BY id DESC
+    `;
+    const query = `%${searchQuery}%`; // Use wildcards for partial matching
+
+    db.query(sql, [userId, query, query], (err, results) => {
+        if (err) {
+            console.error("Error searching saved movies:", err);
+            return res.status(500).send("Error searching saved movies.");
+        }
+        res.render("favourites", { 
+            movies: results, 
+            message: `Search results for "${searchQuery}"`, 
+            searchQuery 
+        });
+    });
+});
+
 // Route to update a movie's note and rating
 router.post("/favourites/update/:id", redirectLogin, (req, res) => {
     const { note, rating } = req.body;
@@ -63,7 +89,7 @@ router.post("/favourites/update/:id", redirectLogin, (req, res) => {
             console.error("Error updating note and rating:", err);
             return res.status(500).send("Error updating note and rating.");
         }
-        res.redirect("https://www.doc.gold.ac.uk/usr/306/favourites");
+        res.redirect("/");
     });
 });
 
@@ -78,7 +104,7 @@ router.post("/favourites/delete/:id", redirectLogin, (req, res) => {
             console.error("Error deleting movie:", err);
             return res.status(500).send("Error deleting movie.");
         }
-        res.redirect("https://www.doc.gold.ac.uk/usr/306/favourites");
+        res.redirect("/");
     });
 });
 
