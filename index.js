@@ -31,7 +31,7 @@ app.use(session({
         maxAge: 20 * 60 * 1000 //20 minutes in milliseconds
     }
 }));
-console.log(sessionSecret);
+console.log(`Session secret: ${sessionSecret}`);
 
 // Tell Express that we want to use EJS as the templating engine
 app.set('view engine', 'ejs')
