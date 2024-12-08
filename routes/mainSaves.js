@@ -104,7 +104,7 @@ router.post("/favourites/delete/:id", redirectLogin, (req, res) => {
             console.error("Error deleting movie:", err);
             return res.status(500).send("Error deleting movie.");
         }
-        res.redirect("https://www.doc.gold.ac.uk/usr/306/favourites");
+        res.redirect("/usr/306/favourites");
     });
 });
 
