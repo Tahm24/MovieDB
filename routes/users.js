@@ -36,7 +36,7 @@ router.post(
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             console.log("Invalid Input");
-            return res.redirect("./register");
+            return res.send("invalid input")
         }
 
         const username = req.sanitize(req.body.username);
@@ -118,15 +118,10 @@ router.post("/logged", (req, res) => {
                 req.session.userId = user.id; //saving userid as int to match db scheme requirements
                 res.redirect("../");
             } else {
-                res.status(401).send('Invalid username or password <a href="./login">Try Again</a>.');
+                res.status(401).send('Invalid username or password Try Again');
             }
         });
     });
-});
-
-///////////////////////About Page///////////////////////
-router.get('/about',function (req, res) {
-    res.render('about')                                                            
 });
 
 
