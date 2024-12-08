@@ -139,7 +139,7 @@ body {
 
 /* Form */
 .movie-card textarea {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     font-size: 0.9rem;
     border: 1px solid #ccc;

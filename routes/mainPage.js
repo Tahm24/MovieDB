@@ -96,11 +96,6 @@ router.post("/search", redirectLogin, (req, res) => {
 });
 
 
-///////////////////////About Page///////////////////////
-router.get('/about',function (req, res) {
-    res.render('about')                                                            
-});
-
 //kill session activity
 router.get("/logout", redirectLogin, (req, res) => {
     req.session.destroy((err) => {
