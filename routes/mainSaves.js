@@ -9,6 +9,33 @@ const redirectLogin = (req, res, next) => {
     next();
 };
 
+// Route to view saved movies
+router.get("/favourites", redirectLogin, (req, res) => {
+    const userId = req.session.userId;
+
+    const sql = "SELECT * FROM saved_movies WHERE user_id = ? ORDER BY id DESC";
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error("Error fetching saved movies:", err);
+            return res.status(500).send("Error fetching saved movies.");
+        }
+        res.render("favourites", { movies: results, message: null, searchQuery: "" });
+    });
+});
+
+router.get("/api/movies", (req, res) => {
+    const userId = req.session.userId;
+
+    const sql = "SELECT * FROM saved_movies WHERE user_id = ?";
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error("Error fetching saved movies:", err);
+            return res.status(500).json({ error: "Error fetching saved movies." });
+        }
+        res.json(results); // Return JSON response
+    });
+});
+
 // Route to save a movie
 router.post("/favourites/saves", redirectLogin, (req, res) => {
     const { title, poster, releaseDate, note } = req.body;
@@ -24,19 +51,6 @@ router.post("/favourites/saves", redirectLogin, (req, res) => {
     });
 });
 
-// Route to view saved movies
-router.get("/favourites", redirectLogin, (req, res) => {
-    const userId = req.session.userId;
-
-    const sql = "SELECT * FROM saved_movies WHERE user_id = ? ORDER BY id DESC";
-    db.query(sql, [userId], (err, results) => {
-        if (err) {
-            console.error("Error fetching saved movies:", err);
-            return res.status(500).send("Error fetching saved movies.");
-        }
-        res.render("favourites", { movies: results, message: null, searchQuery: "" });
-    });
-});
 
 // Route to search saved movies
 router.post("/favourites/search", redirectLogin, (req, res) => {
