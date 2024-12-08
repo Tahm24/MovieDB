@@ -22,9 +22,12 @@ CREATE TABLE IF NOT EXISTS saved_movies (
     poster VARCHAR(255),
     release_date DATE,
     note TEXT,
+    rating INT DEFAULT 0,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES details(id) ON DELETE CASCADE
 );
+
+
 
 
 # App user

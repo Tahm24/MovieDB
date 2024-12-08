@@ -2,8 +2,9 @@
 const express = require("express");
 const router = express.Router();
 
-//Require mainSaves routes
+//Require mainSaves routes and my API routes
 const mainSavesRoutes = require("./mainSaves");
+const myapiRoutes = require("./APIs");
 
 //Bcrypt modules
 const bcrypt = require("bcrypt");
@@ -100,8 +101,18 @@ router.get('/about',function (req, res) {
     res.render('about')                                                            
 });
 
+//kill session activity
+router.get("/logout", redirectLogin, (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.redirect("./users/login");
+        }
+        res.send('You are now Logged Out <a href="./users/login">Login</a>.');
+    });
+});
 //Use the routes from mainSaves.js
 router.use(mainSavesRoutes);
+router.use(myapiRoutes);
 
 
 module.exports = router;

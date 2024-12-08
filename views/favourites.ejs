@@ -15,7 +15,8 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/favourites">Favourites</a></li>
-                <li><a href="/favourites">Recommended</a></li>
+                <li><a href="/recommended">Recommended</a></li>
+                <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -49,10 +50,21 @@
                         <img src="<%= movie.poster %>" alt="<%= movie.title %>">
                         <h3><%= movie.title %></h3>
                         <p>Release Date: <%= movie.release_date %></p>
+                        <p>Rating: <%= movie.rating %> / 5</p>
+                        
                         <form action="/favourites/update/<%= movie.id %>" method="post">
                             <textarea name="note" placeholder="Update note"><%= movie.note %></textarea>
-                            <button type="submit">Update Note</button>
+                            
+                            <label for="rating">Rating:</label>
+                            <select name="rating" id="rating">
+                                <% for (let i = 0; i <= 5; i++) { %>
+                                    <option value="<%= i %>" <%= movie.rating == i ? 'selected' : '' %>><%= i %></option>
+                                <% } %>
+                            </select>
+                            
+                            <button type="submit">Update</button>
                         </form>
+
                         <form action="/favourites/delete/<%= movie.id %>" method="post" style="margin-top: 10px;">
                             <button type="submit">Delete Movie</button>
                         </form>

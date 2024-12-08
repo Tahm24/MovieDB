@@ -124,14 +124,5 @@ router.post("/logged", (req, res) => {
     });
 });
 
-//kill session activity
-router.get("/logout", redirectLogin, (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.redirect("./users/login");
-        }
-        res.send('You are now Logged Out <a href="./login">Login</a>.');
-    });
-});
 
 module.exports = router;
