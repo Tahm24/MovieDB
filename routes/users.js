@@ -25,8 +25,7 @@ router.get("/register", function (req, res, next) {
 });
 
 //Register Post handling
-router.post(
-    "/registered",
+router.post("/registered",
     [
         check("email").isEmail(),
         check("username").isLength({ max: 30 }),
