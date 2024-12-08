@@ -2,6 +2,9 @@
 const express = require("express");
 const router = express.Router();
 
+//Require mainSaves routes
+const mainSavesRoutes = require("./mainSaves");
+
 //Bcrypt modules
 const bcrypt = require("bcrypt");
 const saltrounds = 10;
@@ -27,7 +30,7 @@ const redirectLogin = (req, res, next) => {
 
 ///////////////////////Home Page///////////////////////
 //Home Page loading recent movies
-router.get("/",redirectLogin, (req, res) => {
+router.get("/", redirectLogin, (req, res) => {
     //page number using queries and parse into url to load page numbers, default value set to 1 page
     const page = req.query.page || 1; 
     const url = `${TMDB_BASE_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`;
@@ -58,7 +61,7 @@ router.get("/",redirectLogin, (req, res) => {
 });
 
 //Home page post method to search movies
-router.post("/search", (req, res) => {
+router.post("/search", redirectLogin, (req, res) => {
     //search query from home page get method
     const searchQuery = req.body.searchQuery;
     //page number using queries and parse into url to load page numbers, default value set to 1 page
@@ -93,9 +96,12 @@ router.post("/search", (req, res) => {
 
 
 ///////////////////////About Page///////////////////////
-router.get('/about', function (req, res) {
-    res.send("About Page Test 1")                                                              
+router.get('/about',function (req, res) {
+    res.render('about')                                                            
 });
+
+//Use the routes from mainSaves.js
+router.use(mainSavesRoutes);
 
 
 module.exports = router;

@@ -70,9 +70,6 @@ app.use('/users', mainRoute);
 const usersRoutes = require('./routes/mainPage');
 app.use('/', usersRoutes);
 
-// const usersRoutes = require('./routes/mainSaves');
-// app.use('/saves', usersRoutes);
-
 //Server listening at port
 app.listen(PORT, () => {
     console.log(`Node server is running on PORT: ${PORT}`)

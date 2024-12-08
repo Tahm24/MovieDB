@@ -1,106 +1,85 @@
-//Router module
+// Router module
 const express = require("express");
 const router = express.Router();
 
-//Bcrypt modules
+// Bcrypt modules
 const bcrypt = require("bcrypt");
 const saltrounds = 10;
 
-//Express validator mdules
+// Express validator modules
 const { check, validationResult } = require("express-validator");
 
-//Handle session redirect
+// Handle session redirect
 const redirectLogin = (req, res, next) => {
-    if (!req.session.userId ) {
-      res.redirect('https://www.doc.gold.ac.uk/usr/306/users/login')
-    } else { 
+    if (!req.session.userId) {
+        res.redirect('https://www.doc.gold.ac.uk/usr/306/users/login');
+    } else {
         next();
-    } 
-}
+    }
+};
 
-////////////// Handle registration //////////////
-//Register page
-router.get("/register", function (req, res, next) {
+////////////// Handle Registration //////////////
+// Register page
+router.get("/register", (req, res) => {
     res.render("register.ejs");
 });
 
-//Register Post handling
-router.post("/registered",
+// Register Post handling
+router.post(
+    "/registered",
     [
         check("email").isEmail(),
         check("username").isLength({ max: 30 }),
         check("password").isLength({ min: 5 }),
     ],
-    (req, res, next) => {
-        //validator redirect check
+    (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             console.log("Invalid Input");
             return res.redirect("./register");
         }
 
-        //check if username or email already exists
         const username = req.sanitize(req.body.username);
         const email = req.sanitize(req.body.email);
         const sqlCheck = "SELECT * FROM details WHERE username = ? OR email = ?";
+
         db.query(sqlCheck, [username, email], (err, result) => {
             if (err) {
                 console.error("Error checking username/email:", err);
-                return next(err);
+                return res.status(500).send("Server Error");
             }
+
             const existingUser = result.find((row) => row.username === username);
             const existingEmail = result.find((row) => row.email === email);
 
-            //Send both or indivdual response to user if user or email already exists
             if (existingUser && existingEmail) {
-                console.log("Email and Username already in use.");
-                return res.send("Email and Username already in use. Please use different Credentials.");
-            } 
-            
-            else if (existingEmail) {
-                console.log("Email already exists.");
+                return res.send("Email and Username already in use. Please use different credentials.");
+            } else if (existingEmail) {
                 return res.send("Email already in use. Please use a different Email.");
-            } 
-            
-            else if (existingUser) {
-                console.log("Username already exists.");
+            } else if (existingUser) {
                 return res.send("Username already exists. Please use a different Username.");
             }
-            
-            //if username or email does not exist proceed with password hashing and insertion into db 
+
             const plainPassword = req.sanitize(req.body.password);
             if (!plainPassword) {
                 return res.status(400).send("Password is required");
             }
 
-            //Hashing
             bcrypt.hash(plainPassword, saltrounds, (err, hashedPassword) => {
                 if (err) {
                     console.error("Error hashing the password:", err);
-                    return next(err);
+                    return res.status(500).send("Server Error");
                 }
 
-                const newrecord = [
-                    req.sanitize(req.body.email),
-                    username,
-                    hashedPassword,
-                ];
+                const newRecord = [email, username, hashedPassword];
+                const sqlInsert = "INSERT INTO details (email, username, hashedpassword) VALUES (?, ?, ?)";
 
-                const sqlquery =
-                    "INSERT INTO details (email, username, hashedpassword) VALUES (?,?,?)";
-
-                //inserting new record into the database
-                db.query(sqlquery, newrecord, (err, result) => {
+                db.query(sqlInsert, newRecord, (err, result) => {
                     if (err) {
-                        console.log("Error inserting into database:", err);
-                        return next(err);
+                        console.error("Error inserting into database:", err);
+                        return res.status(500).send("Server Error");
                     }
-                    console.log(
-                        `Insert Successful: Hashed Password: ${hashedPassword} and ${username} and ${req.body.email}`
-                    );
-                    res.send(
-                        `Registration successful. Password has been hashed/Saved to DB for username: ${username}`
-                    );
+                    res.send(`Registration successful for ${username}`);
                 });
             });
         });
@@ -108,51 +87,51 @@ router.post("/registered",
 );
 
 ////////////// Handle Login //////////////
-//Login Page
-router.get("/login", (req, res, next) => {
+// Login page
+router.get("/login", (req, res) => {
     res.render("login.ejs");
 });
 
-//Logged Post
+// Updated Login Post handling
 router.post("/logged", (req, res) => {
-    const password = req.body.password;
-    const sqlquery = "SELECT * FROM details WHERE username = ?";
+    const { username, password } = req.body;
 
-    db.query(sqlquery, [req.body.username], (err, result) => {
+    const sql = "SELECT * FROM details WHERE username = ?";
+    db.query(sql, [username], (err, results) => {
         if (err) {
-            console.error("Error fetching user from database:", err);
-            return next(err);
+            console.error("Error fetching user:", err);
+            return res.status(500).send("Server Error");
         }
 
-        if (result.length === 0) {
-            res.send("Username or Password Incorrect");
-        } else {
-            const user = result[0].hashedpassword;
-            bcrypt.compare(password, user, (err, matching) => {
-                if (err) {
-                    console.error("Error comparing passwords:", err);
-                    return res.send("An error has occurred: " + err);
-                }
-                if (matching) {
-                    req.session.userId = req.body.username;
-                    res.redirect("../");
-                    console.log("Login successful");
-                } else {
-                    res.send('Username or Password Incorrect <a href='+'/users/login'+'>Login</a>');
-                }
-            });
+        if (results.length === 0) {
+            return res.status(401).send("Invalid username or password.");
         }
+
+        const user = results[0];
+        bcrypt.compare(password, user.hashedpassword, (err, match) => {
+            if (err) {
+                console.error("Error comparing passwords:", err);
+                return res.status(500).send("Server Error");
+            }
+
+            if (match) {
+                req.session.userId = user.id; // Ensure userId is saved as an integer.
+                res.redirect("../");
+            } else {
+                res.status(401).send('Invalid username or password <a href="./login">Try Again</a>.');
+            }
+        });
     });
 });
 
-//Kill session activity 
-router.get('/logout', redirectLogin, (req,res) => {
-    req.session.destroy(err => {
-    if (err) {
-      return res.redirect('/users/login')
-    }
-    res.send('You are now Logged Out <a href='+'/users/login'+'>Login</a>');
-    })
-})
+// Kill session activity
+router.get("/logout", redirectLogin, (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.redirect("./users/login");
+        }
+        res.send('You are now Logged Out <a href="./login">Login</a>.');
+    });
+});
 
 module.exports = router;

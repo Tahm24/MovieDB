@@ -43,9 +43,17 @@
                         <img src="<%= movie.poster %>" alt="<%= movie.title %>">
                         <h3><%= movie.title %></h3>
                         <p>Release Date: <%= movie.releaseDate %></p>
+                        <form action="/favourites/saves" method="post">
+                            <input type="hidden" name="title" value="<%= movie.title %>">
+                            <input type="hidden" name="poster" value="<%= movie.poster %>">
+                            <input type="hidden" name="releaseDate" value="<%= movie.releaseDate %>">
+                            <textarea name="note" placeholder="Add a note"></textarea>
+                            <button type="submit">Save</button>
+                        </form>
                     </div>
                 <% }) %>
             </div>
+            
 
             
            <% if (!searchQuery) { %>

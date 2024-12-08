@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Movies</title>
+    <link rel="stylesheet" href="/public/favourites.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">MovieDB</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/favourites">Favourites</a></li>
+                <li><a href="/favourites">Recommended</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Your Saved Movies</h1>
+
+        <!-- Search Form -->
+        <div class="search-container">
+            <form action="/favourites/search" method="post">
+                <input 
+                    type="text" 
+                    name="searchQuery" 
+                    value="<%= searchQuery || '' %>" 
+                    placeholder="Search by title or note..."
+                    required
+                >
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Display success message -->
+        <% if (message) { %>
+            <p class="success-message"><%= message %></p>
+        <% } %>
+
+        <% if (movies && movies.length > 0) { %>
+            <div class="movies-container">
+                <% movies.forEach(movie => { %>
+                    <div class="movie-card">
+                        <img src="<%= movie.poster %>" alt="<%= movie.title %>">
+                        <h3><%= movie.title %></h3>
+                        <p>Release Date: <%= movie.release_date %></p>
+                        <form action="/favourites/update/<%= movie.id %>" method="post">
+                            <textarea name="note" placeholder="Update note"><%= movie.note %></textarea>
+                            <button type="submit">Update Note</button>
+                        </form>
+                        <form action="/favourites/delete/<%= movie.id %>" method="post" style="margin-top: 10px;">
+                            <button type="submit">Delete Movie</button>
+                        </form>
+                    </div>
+                <% }) %>
+            </div>
+        <% } else { %>
+            <p>No movies saved yet. Start saving your favorite movies!</p>
+        <% } %>
+    </div>
+</body>
+</html>

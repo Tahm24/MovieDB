@@ -13,6 +13,10 @@ body {
     text-align: center;
 }
 
+
+
+
+
 h1 {
     margin-bottom: 20px;
     font-size: 2.5rem;
@@ -191,6 +195,37 @@ h1 {
 .pages span {
     font-size: 1rem;
     color: #444;
+}
+
+
+/* Button Container */
+.button-container {
+    text-align: center; /* Center the button */
+    margin: 10px 0; /* Add some spacing above and below */
+}
+
+button {
+    background-color: #007BFF; /* Primary Blue Color */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding for a clickable area */
+    font-size: 14px; /* Font size */
+    font-weight: bold; /* Bold text for better visibility */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for better UX */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effects */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #0056b3; /* Darker Blue on hover */
+    transform: scale(1.05); /* Slight zoom-in effect */
+}
+
+/* Active/Click effect */
+button:active {
+    background-color: #00408f; /* Even darker blue on click */
+    transform: scale(0.95); /* Slight zoom-out effect */
 }
 
 
