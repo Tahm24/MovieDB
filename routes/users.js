@@ -119,11 +119,7 @@ router.post("/logged", (req, res) => {
         if (results.length === 0) {
             return res.status(401).send("Invalid username or password.");
         }
-
         
-        //User found//
-
-
         //Go at index 0 on table row
         const user = results[0];
         //Compare function
