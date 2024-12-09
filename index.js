@@ -59,9 +59,6 @@ db.connect((err) => {
 global.db = db
 
 
-
-
-
 // route handlers
 const mainRoute = require("./routes/users");
 app.use('/users', mainRoute);
