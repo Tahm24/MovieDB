@@ -32,7 +32,7 @@ app.use(session({
     }
 }));
 
-// Tell Express that we want to use EJS as the templating engine
+//Template engine to ejs
 app.set('view engine', 'ejs')
 //Server some static files like css
 app.use('/public', express.static('public'));
@@ -40,7 +40,6 @@ app.use('/public', express.static('public'));
 //Body-Parser and sanitize starter
 app.use(express.urlencoded({ extended: true }));
 app.use(expressSanitizer());
-
 
 //Database Connection
 const db = mysql.createConnection ({
@@ -59,7 +58,7 @@ db.connect((err) => {
 global.db = db
 
 
-// route handlers
+//route handlers
 const mainRoute = require("./routes/users");
 app.use('/users', mainRoute);
 

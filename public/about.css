@@ -7,11 +7,11 @@ body {
 }
 
 .main-content {
-    display: flex; /* Use flexbox to center content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    height: calc(100vh - 60px); /* Full viewport height minus navbar height */
-    text-align: center; /* Center-align text */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: calc(100vh - 60px);
+    text-align: center; 
 }
 
 h1 {
@@ -22,8 +22,8 @@ h1 {
 
 /* Nav bar */
 .navbar {
-    background-color: #333; /* Dark background */
-    color: #fff; /* White text */
+    background-color: #333; 
+    color: #fff; 
     padding: 10px 20px;
     position: sticky;
     top: 0;
@@ -66,5 +66,5 @@ h1 {
 }
 
 .nav-links a:hover {
-    color: #007BFF; /* Highlight color on hover */
+    color: #007BFF;  
 }

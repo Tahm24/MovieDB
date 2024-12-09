@@ -77,24 +77,24 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    gap: 10px; /* Added more spacing between input and button */
+    gap: 10px; 
 }
 
 .search-container input[type="text"] {
     flex: 1;
-    max-width: 80%; /* Increased maximum width */
-    padding: 15px; /* Increased padding for a larger input field */
+    max-width: 80%; 
+    padding: 15px; 
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
-    font-size: 1.1rem; /* Slightly larger font size */
+    font-size: 1.1rem; 
 }
 
 .search-container button {
-    padding: 15px 30px; /* Increased button size */
+    padding: 15px 30px; 
     border: none;
     background-color: #007BFF;
     color: #fff;
-    font-size: 1.1rem; /* Slightly larger font size */
+    font-size: 1.1rem; 
     cursor: pointer;
     border-radius: 0 5px 5px 0;
     transition: background-color 0.3s;

@@ -1,4 +1,3 @@
-/* General Styles */
 /* Style for the background image */
 .background-image {
     position: fixed;
@@ -6,13 +5,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Push the image behind other elements */
+    z-index: -1; 
 }
 
 .bg-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the entire viewport */
+    object-fit: cover; 
 }
 
 /* Ensure the rest of the layout remains unaffected */
@@ -20,7 +19,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Fallback if image doesn't load */
+    background-color: #f4f4f4; 
     color: #333;
 }
 
@@ -71,7 +70,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #007BFF; /* Highlight color on hover */
+    color: #007BFF; 
 }
 
 /* Register Container Styles */

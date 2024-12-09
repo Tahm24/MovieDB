@@ -82,7 +82,7 @@ router.post("/search", redirectLogin, (req, res) => {
         const data = JSON.parse(body);
 
         if (data.results && data.results.length > 0) {
-            //Movie stores the title, poster and release dates
+            //movie stores the title, poster and release dates
             const movies = data.results.map((movie) => ({
                 title: movie.title,
                 poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
