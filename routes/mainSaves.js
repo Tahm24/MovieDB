@@ -126,7 +126,6 @@ router.get("/recommended", redirectLogin, (req, res) => {
             return res.status(500).send("Error fetching recommended movies.");
         }
         res.render("recommended", { movies: results });
-        console.log("Recommended Movies Query Results:", results);
 
     });
 });
