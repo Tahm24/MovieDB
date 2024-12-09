@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="/public/register.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/login.css">
 </head>
 <body>
-    <!-- Add the image directly to the HTML -->
     <div class="background-image">
         <img src="/public/images/Mbg.jpeg" alt="Background" class="bg-image">
     </div>
-
+    
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="/" class="nav-logo">MovieDB</a>
             <ul class="nav-links">
-                <li><a href="/users/login">Login</a></li>
+                <li><a href="/users/register">Register</a></li>
                 <li><a href="/users/about">About</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Register Forms -->
     <div class="register-container">
-        <h1>Register</h1>
-        <form class="register-form" action="/users/registered" method="POST">
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
-
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <input type="submit" value="Register">
-        </form>
-    </div>
+      <h1>Login</h1>
+      <form method="POST" action="/users/logged" class="register-form">
+        <label for="username">Username:</label>
+        <input id="username" name="username" type="text" maxlength="30" minlength="5">
+        
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" maxlength="70" required>
+        
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="password" maxlength="20" minlength="5">
+        
+        <input type="submit" value="Login">
+      </form>
+  </div>
 </body>
 </html>
