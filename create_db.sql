@@ -1,3 +1,8 @@
+# Set a hard cutoff for connections after 30 seconds
+SET GLOBAL wait_timeout = 30;           # Timeout for non-interactive sessions
+SET GLOBAL interactive_timeout = 30;   # Timeout for interactive sessions
+SET GLOBAL max_connections = 1;        # Restrict to a single connection for stricter testing
+
 # Disable foreign key checks
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -36,3 +41,6 @@ CREATE TABLE IF NOT EXISTS saved_movies (
 # Create app user
 CREATE USER IF NOT EXISTS 'movies_app'@'localhost' IDENTIFIED BY 'Tahm0-123'; 
 GRANT ALL PRIVILEGES ON movies.* TO 'movies_app'@'localhost';
+
+# Restore max connections after testing (optional)
+SET GLOBAL max_connections = 100;     # Restore to default value
