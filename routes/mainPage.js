@@ -5,6 +5,9 @@ const router = express.Router();
 const mainSavesRoutes = require("./mainSaves");
 const myapiRoutes = require("./APIs");
 
+//Require Env
+require('dotenv').config();
+
 //Bcrypt modules
 const bcrypt = require("bcrypt");
 const saltrounds = 10;
@@ -15,7 +18,7 @@ const { check, validationResult } = require('express-validator');
 //Request Module for APIs
 const request = require("request");
 //TMDB API Key (Base URL to retrieve recent movies)
-const TMDB_API_KEY = "30b6bc59b942cd6fefbef352a9e61e36"; 
+const TMDB_API_KEY = process.env.APIkey; 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 //Handle session redirect

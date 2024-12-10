@@ -9,12 +9,12 @@ require('dotenv').config();
 const expressSanitizer = require('express-sanitizer');
 
 //mysql module
-const mysql = require('mysql2'); // Ensure this is mysql2 for better handling
+const mysql = require('mysql2');
 const session = require('express-session');
 const crypto = require('crypto');
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Default to 3000 if not set
+const PORT = process.env.PORT || 3000; //Default to 3000 if not set
 
 //Generate random String for secret using Crypto function
 const sessionSecret = crypto.randomBytes(64).toString('hex');
@@ -43,7 +43,7 @@ app.use(expressSanitizer());
 const db = mysql.createPool({
     host: 'localhost',
     user: 'movies_app',
-    password: 'Tahm0-123',
+    password: process.env.dbPassword,
     database: 'movies',
     waitForConnections: true,
     connectionLimit: 10,
