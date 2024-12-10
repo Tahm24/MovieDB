@@ -25,7 +25,7 @@ router.get("/movies/:username", async (req, res) => {
         res.json({ username, userId, movies: moviesResults });
     } catch (err) {
         console.error("Error:", err);
-        return res.status(500).json({ error: "An error occurred." });
+        return res.status(500).json({ error: "An error occurred with the DB checking." });
     }
 });
 
