@@ -56,7 +56,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #007BFF;
+    color: #ffa600;
 }
 
 /* Container */
@@ -105,7 +105,7 @@ body {
 }
 
 .search-container button:hover {
-    background-color: #0056b3;
+    background-color: #3eaf05;
 }
 
 /* Movies Grid */
@@ -164,7 +164,7 @@ body {
     padding: 10px;
     margin-top: 10px;
     width: 100%;
-    background-color: #007BFF;
+    background-color: #ffa600;
     color: #fff;
     font-size: 0.9rem;
     border: none;
@@ -174,5 +174,5 @@ body {
 }
 
 .movie-card button:hover {
-    background-color: #0056b3;
+    background-color: #ff6f00;
 }

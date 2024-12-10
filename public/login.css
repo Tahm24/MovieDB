@@ -38,7 +38,7 @@ body {
 /* Navbar */
 .navbar {
     width: 100%;
-    background: #000000;
+    background: #000000c1;
     color: #fff;
     padding: 10px 20px;
     position: sticky;
@@ -85,16 +85,16 @@ body {
 }
 
 .nav-links a:hover {
-    color: #007BFF;
+    color: #ffa600;
 }
 
-/* Register Container Styles */
-.register-container {
+/* Login Container Styles */
+.login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 80px); /* Adjust for navbar height */
+    height: calc(70vh - 80px); 
     width: 100%;
     max-width: 400px;
     margin: auto;
@@ -105,7 +105,7 @@ body {
     animation: fadeIn 1.5s ease-out;
 }
 
-.register-container h1 {
+.login-container h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: #fff;
@@ -113,13 +113,13 @@ body {
     text-align: center;
 }
 
-/* Register Form */
-.register-form {
+/* Login Form */
+.login-form {
     width: 100%;
     animation: slideIn 1s ease-out;
 }
 
-.register-form label {
+.login-form label {
     display: block;
     font-size: 1rem;
     margin-bottom: 5px;
@@ -127,8 +127,8 @@ body {
     text-align: left;
 }
 
-.register-form input[type="text"],
-.register-form input[type="password"] {
+.login-form input[type="text"],
+.login-form input[type="password"] {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -141,18 +141,18 @@ body {
     transition: all 0.3s;
 }
 
-.register-form input[type="text"]:focus,
-.register-form input[type="password"]:focus {
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
     outline: none;
-    border-color: #00ffdd;
+    border-color: #ffa600;
     background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 8px #00ffdd;
+    box-shadow: 0 0 8px #ff0000;
 }
 
-.register-form input[type="submit"] {
+.login-form input[type="submit"] {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #007BFF, #00ffdd);
+    background: linear-gradient(135deg, #ff0000, #ffa600);
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -163,8 +163,8 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.register-form input[type="submit"]:hover {
-    background: linear-gradient(135deg, #0056b3, #007BFF);
+.login-form input[type="submit"]:hover {
+    background: linear-gradient(135deg, #ff8000, #ffd500);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
