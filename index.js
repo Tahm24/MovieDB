@@ -39,27 +39,21 @@ app.use('/public', express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 
-// Use a connection pool instead of a single connection
-const db = mysql.createPool({
+//Database Connection
+const db = mysql.createConnection ({
     host: 'localhost',
     user: 'movies_app',
     password: 'Tahm0-123',
-    database: 'movies',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
-
-// Test the database connection
-db.getConnection((err, connection) => {
+    database: 'movies'
+})
+//Connection made
+db.connect((err) => {
     if (err) {
-        console.error('Database connection failed:', err);
-        process.exit(1); // Stop the server if we can't connect
-    } else {
-        console.log('Connected to database');
-        connection.release();
+        throw err
     }
-});
+    console.log('Connected to database')
+})
+global.db = db
 
 // Make db accessible globally
 global.db = db;
