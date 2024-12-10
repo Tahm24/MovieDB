@@ -4,20 +4,22 @@ const bcrypt = require("bcrypt");
 const saltrounds = 10;
 const { check, validationResult } = require("express-validator");
 
-// Handle session redirect middleware (if needed in other routes)
+//Handle session redirect middleware (if needed in other routes)
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId) {
-        return res.redirect('https://www.doc.gold.ac.uk/usr/306/users/login');
+       //For server
+        // return res.redirect('https://www.doc.gold.ac.uk/usr/306/users/login');
+        return res.redirect('/users/login');
     }
     next();
 };
 
-// Register Page
+//Register Page
 router.get("/register", (req, res) => {
     res.render("register.ejs");
 });
 
-// Register Post Handling
+//Register Post Handling
 router.post("/registered",
     [
         check("email").isEmail(),
@@ -57,7 +59,7 @@ router.post("/registered",
                 return res.send("Username already exists. Please use a different Username.");
             }
 
-            // Hash the password
+            //Hash the password
             bcrypt.hash(plainPassword, saltrounds, (err, hashedPassword) => {
                 if (err) {
                     console.error("Error hashing the password:", err);
@@ -70,7 +72,7 @@ router.post("/registered",
                 db.query(sqlInsert, newRecord, (err, insertResult) => {
                     if (err) {
                         console.error("Error inserting into database:", err);
-                        return res.status(500).send("Server Error");
+                        return res.status(500).send("Server Error - Registered");
                     }
                     return res.send(`Registration successful. Please <a href="/users/login">Login</a>`);
                 });
@@ -79,12 +81,12 @@ router.post("/registered",
     }
 );
 
-// Login Page
+//Login Page
 router.get("/login", (req, res) => {
     res.render("login.ejs");
 });
 
-// Login POST
+//Login POST
 router.post("/logged", (req, res) => {
     const username = req.sanitize(req.body.username || '');
     const password = req.sanitize(req.body.password || '');
@@ -108,7 +110,7 @@ router.post("/logged", (req, res) => {
         bcrypt.compare(password, user.hashedpassword, (err, match) => {
             if (err) {
                 console.error("Error comparing passwords:", err);
-                return res.status(500).send("Server Error");
+                return res.status(500).send("Server Error - Login");
             }
 
             if (match) {
@@ -121,7 +123,7 @@ router.post("/logged", (req, res) => {
     });
 });
 
-// About Route
+//About Route
 router.get('/about', (req, res) => {
     res.render('about');
 });

@@ -29,17 +29,17 @@ app.use(session({
     }
 }));
 
-// Set view engine to ejs
+//Set view engine to ejs
 app.set('view engine', 'ejs')
 
-// Serve static files
+//Serve static files
 app.use('/public', express.static('public'));
 
-// Body Parser and Sanitizer
+//Body Parser and Sanitizer
 app.use(express.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 
-// Use a connection pool instead of a single connection
+//Use a connection pool instead of a single connection
 const db = mysql.createPool({
     host: 'localhost',
     user: 'movies_app',
@@ -50,22 +50,22 @@ const db = mysql.createPool({
     queueLimit: 0
 });
 
-// Test the database connection
+//Test database connection
 db.getConnection((err, connection) => {
     if (err) {
         console.error('Database connection failed:', err);
-        process.exit(1); // Stop the server if we can't connect
+        process.exit(1); //stops server if connection not working
     } else {
         console.log('Connected to database');
         connection.release();
     }
 });
 
-// Make db accessible globally
+//Make db accessible globally
 global.db = db;
 
 
-// Route handlers
+//Route handlers
 const mainRoute = require("./routes/users");
 app.use('/users', mainRoute);
 
