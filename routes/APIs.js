@@ -2,7 +2,7 @@ const express = require("express");
 const crypto = require("crypto"); 
 const router = express.Router();
 
-//Middleware to redirect if no user ID/session
+//Middleware to redirect 
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId) {
         return res.redirect("./users/login");
