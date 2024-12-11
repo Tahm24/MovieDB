@@ -91,10 +91,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 90px); 
+    height: calc(70vh); 
     width: 100%;
     max-width: 400px;
-    margin: 20px auto; 
+    margin: 90px auto; 
     background: rgba(0, 0, 0, 0.65);
     padding: 40px;
     border-radius: 10px;
@@ -150,6 +150,7 @@ body {
 
 .register-form input[type="submit"] {
     width: 100%;
+    margin-top: 20px;
     padding: 12px;
     background: linear-gradient(135deg, #ff0000, #ffa600);
     color: #fff;

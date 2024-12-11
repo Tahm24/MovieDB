@@ -152,6 +152,7 @@ body {
 .login-form input[type="submit"] {
     width: 100%;
     padding: 12px;
+    margin-top: 20px;
     background: linear-gradient(135deg, #ff0000, #ffa600);
     color: #fff;
     border: none;
