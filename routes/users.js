@@ -8,8 +8,8 @@ const { check, validationResult } = require("express-validator");
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId) {
        //For server
-         return res.redirect('https://www.doc.gold.ac.uk/usr/306/users/login');
-        //  return res.redirect('/users/login');
+        //  return res.redirect('https://www.doc.gold.ac.uk/usr/306/users/login');
+          return res.redirect('/users/login');
     }
     next();
 };

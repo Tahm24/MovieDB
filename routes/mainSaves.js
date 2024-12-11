@@ -100,8 +100,8 @@ router.post("/favourites/update/:id", redirectLogin, (req, res) => {
             return res.status(500).send("Error updating note and rating.");
         }
         //for server
-          res.redirect("/usr/306/favourites");
-        //   res.redirect("/favourites");
+        //   res.redirect("/usr/306/favourites");
+          res.redirect("/favourites");
     });
 });
 
@@ -118,8 +118,8 @@ router.post("/favourites/delete/:id", redirectLogin, (req, res) => {
             return res.status(500).send("Error deleting movie.");
         }
         //for server
-        res.redirect("/usr/306/favourites");
-        //  res.redirect("/favourites");
+        // res.redirect("/usr/306/favourites");
+          res.redirect("/favourites");
     });
 });
 
