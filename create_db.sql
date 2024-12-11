@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS details (
     email VARCHAR(70),
     username VARCHAR(30),
     hashedpassword VARCHAR(255),
+    api_key VARCHAR(255),
     PRIMARY KEY (id)
 );
 

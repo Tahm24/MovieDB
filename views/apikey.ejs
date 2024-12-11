@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your API Key</title>
+    <link rel="stylesheet" href="/public/API.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">MovieDB</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/favourites">Favourites</a></li>
+                <li><a href="/recommended">Recommended</a></li>
+                <li><a href="/apiKey">API</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- API key -->
+    <div class="api-container">
+        <h1>Your API Key</h1>
+        <p class="api-key">
+            <%= apiKey %>
+        </p>
+        <p>
+            Use this API key to access your movies data securely. <br>
+            https://www.doc.gold.ac.uk/usr/306/movies/<%= apiKey %>
+        </p>
+    </div>
+</body>
+</html>
