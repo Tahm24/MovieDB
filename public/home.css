@@ -142,7 +142,7 @@ h1 {
     width: 200px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Helps with smooth lifting animation */
+    /* Helps with that smooth lifting animation */
     transition: transform 0.3s ease;
 }
 

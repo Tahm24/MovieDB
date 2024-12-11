@@ -39,7 +39,8 @@ app.use('/public', express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 
-//Use a connection pool instead of a single connection
+//Connection pool to connect to database and have multiple pools ready/restart
+
 const db = mysql.createPool({
     host: 'localhost',
     user: 'movies_app',
