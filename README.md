@@ -2,7 +2,7 @@
 
 
 1. ## File setup
-Load file into an environment like vs code that has a built in terminal
+Load file into an environment like vs code that has a built in terminal.
 Install all npm dependencies in the root of the file. Command for terminal: "npm install all". Json package should know all the dependencies.
 
 2. ##SQL setup (Assuming you have Mysql setup)
