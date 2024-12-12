@@ -13,7 +13,7 @@ Then "source create_db.sql". This should create the database with the tables.
 More simple, if you have Mysql workbench and copy/paste all sql code into an already made connection instance. Create one if you need. Then run all the sql code.
 
 3. ##Run it
-Finally, go to index.js file in vs code environment and run. Everything should be working...
+Finally, go to index.js file in vs code environment and run. Everything should be working....
 
 
  
