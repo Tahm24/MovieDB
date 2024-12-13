@@ -50,7 +50,7 @@ const db = mysql.createPool({
     queueLimit: 0
 });
 
-//Test database connection
+// database connection
 db.getConnection((err, connection) => {
     if (err) {
         console.error('Database connection failed:', err);
