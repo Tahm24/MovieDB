@@ -52,7 +52,7 @@ router.get("/movies/:apiKey", async (req, res) => {
 
         //fetch fav movies with the user id
         const moviesSql = "SELECT * FROM saved_movies WHERE user_id = ? ORDER BY id DESC";
-        const [moviesResults] = await db.promise().query(moviesSql, [userId]);
+        const [moviesResults] = await db.promise().query(moviesSql, [userId])
 
         //respond with movies in JSON format
         res.json({ username, movies: moviesResults });
