@@ -40,7 +40,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 
 //Connection pool to connect to database and have multiple pools ready/restart
-
 const db = mysql.createPool({
     host: 'localhost',
     user: 'movies_app',
